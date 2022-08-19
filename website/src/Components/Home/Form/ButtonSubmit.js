@@ -1,5 +1,6 @@
 import {Button} from "@mui/material";
-import {DeclaredComponent, declareState} from "../../../Tools/Toolbox";
+import {declareState} from "../../../Tools/Toolbox";
+import DeclaredComponent from "../../../Tools/DeclaredComponent";
 
 
 class ButtonSubmit extends DeclaredComponent {

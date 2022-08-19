@@ -1,5 +1,5 @@
 import {Autocomplete, TextField} from "@mui/material";
-import {DeclaredComponent} from "../../../Tools/Toolbox";
+import DeclaredComponent from "../../../Tools/DeclaredComponent";
 const {getDefaultSession, deserializeSessionList, declareState} = require("../../../Tools/Toolbox");
 
 

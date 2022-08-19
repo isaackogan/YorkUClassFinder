@@ -1,5 +1,6 @@
 import {Autocomplete, TextField} from "@mui/material";
-import {declareState, DeclaredComponent} from "../../../Tools/Toolbox";
+import {declareState} from "../../../Tools/Toolbox";
+import DeclaredComponent from "../../../Tools/DeclaredComponent";
 
 class DaySearch extends DeclaredComponent {
 

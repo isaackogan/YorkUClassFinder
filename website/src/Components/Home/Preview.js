@@ -2,7 +2,8 @@
 import styled from "styled-components";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import ImageModal from "./Preview/ImageModal";
-import {convertTime, DeclaredComponent, generateKey} from "../../Tools/Toolbox";
+import {convertTime, generateKey} from "../../Tools/Toolbox";
+import DeclaredComponent from "../../Tools/DeclaredComponent";
 
 const PreviewContainer = styled.div`
   display: flex;
