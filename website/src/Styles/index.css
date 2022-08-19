@@ -1,0 +1,74 @@
+@import url('https://fonts.cdnfonts.com/css/iciel-gotham');
+@import url('https://fonts.googleapis.com/css?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700;800;900');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Rubik","sans-serif", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+.leaflet-container {
+  width: 100% ;
+  height: 100%;
+}
+
+.leaflet-control-attribution {
+  display: none;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@keyframes fadein {
+  from {opacity: 0;}
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-5px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.star{
+  width:210px;
+  position: relative;
+  color: #bdbdbd;
+}
+
+.rating {
+  width:40%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.rating span{
+  font-size:50px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #2c8ed9;
+}
+
+.rating span:before {
+  content:"★★★★★";
+  position: absolute;
+  color: #a3a3a3;
+  z-index: -1;
+}
