@@ -93,7 +93,7 @@ const Footer = () => {
             </HeaderSubContainer>
             <HeaderSubContainer2>
                 <BlackContainer>
-                    <FooterLogo src="/yorklogo.png" />
+                    <FooterLogo src="/yorklogo.png?cachebust=3" />
                     <DevButton href="https://paypal.me/isaackogan" target="_blank">DONATE</DevButton>
                     <DevButton href="https://isaackogan.com/" target="_blank">CONTACT</DevButton>
                 </BlackContainer>
