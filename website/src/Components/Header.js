@@ -117,20 +117,32 @@ const DevButton = styled.a`
 `;
 
 
+const CreditLabel = styled.span`
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding-left: 30px;
+
+  @media(max-width: 600px) {
+    display: none;
+  }
+`;
+
 const Header = () => {
 
     return (
         <HeaderContainer>
             <HeaderSubContainer style={{backgroundColor: "transparent", height: "75px"}}>
                 <Header2XSubContainer>
-                    <FlexCenter><Logo src="/logo.png?cachebust=6"/></FlexCenter>
+                    <FlexCenter><Logo src={`/logo.png?cachebust=429069`}/></FlexCenter>
                 </Header2XSubContainer>
             </HeaderSubContainer>
             <HeaderSubContainer style={{backgroundColor: "#e31837"}}>
                 <Header2XSubContainer>
                     <FlexCenter>
-                        <FirstRedText>York University Class Find Tool (Student-Made)</FirstRedText>
-                        <DevButton href="https://isaackogan.com/" target="_blank">Isaac Kogan</DevButton>
+                        <FirstRedText>Class Find Tool: Student-Made for YorkU</FirstRedText>
+                        <CreditLabel>Isaac Kogan</CreditLabel>
                     </FlexCenter>
                 </Header2XSubContainer>
             </HeaderSubContainer>

@@ -89,11 +89,11 @@ const Footer = () => {
     return (
         <HeaderContainer>
             <HeaderSubContainer style={{backgroundColor: "black", "height": "60px"}}>
-                <DevButton style={{marginLeft: "0"}} href="https://paypal.me/isaackogan" target="_blank">Unaffiliated with YorkU, by Isaac Kogan</DevButton>
+                <DevButton style={{marginLeft: "0"}} href="https://paypal.me/isaackogan" target="_blank">100% Unaffiliated with YorkU</DevButton>
             </HeaderSubContainer>
             <HeaderSubContainer2>
                 <BlackContainer>
-                    <FooterLogo src="/yorklogo.png?cachebust=3" />
+                    <FooterLogo src={`/isaaclogo.png?cachebust=69420`} />
                     <DevButton href="https://paypal.me/isaackogan" target="_blank">DONATE</DevButton>
                     <DevButton href="https://isaackogan.com/" target="_blank">CONTACT</DevButton>
                 </BlackContainer>

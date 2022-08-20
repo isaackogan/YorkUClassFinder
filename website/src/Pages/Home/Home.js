@@ -71,8 +71,8 @@ const Home = () => {
                     <InnerHomeContainer>
                         <Title>Welcome</Title>
                         <Desc>
-                            Welcome to the <strong>Unofficial York University Class Find Tool</strong> for YorkU students! The goal of this app is to help
-                            new students find their way around the campus.
+                            Welcome to the <strong>Class Find Tool: Student-Made for YorkU!</strong> The goal of this app is to help
+                            new students find their way around York's campus.
                         </Desc>
                         <Form />
                         <Preview />
