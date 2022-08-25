@@ -75,7 +75,6 @@ const NotFound = () => {
                         Go Home
                     </Button>
                 </HomeContainer>
-                <Footer style={{bottom: 0, position: "absolute"}} />
             </Background>
         </ThemeProvider>
     );
