@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import ImageModal from "./Preview/ImageModal";
-import {convertTime, generateKey} from "../../Tools/Toolbox";
+import {convertTime, declareState, generateKey} from "../../Tools/Toolbox";
 import DeclaredComponent from "../../Tools/DeclaredComponent";
 
 const PreviewContainer = styled.div`
@@ -85,6 +85,7 @@ class Preview extends DeclaredComponent {
             // Make sure we're not refreshing for nothing
             if (!(this.lastCoords[0] === lat && this.lastCoords[1] === lon)) {
                 self.setState({coordinates: [lat, lon], zoom: 18, key: key});
+                declareState({mapCoords: {lat: lat, lng: lon}});
             }
 
         });
@@ -112,10 +113,9 @@ class Preview extends DeclaredComponent {
 
 
     render() {
-
         return (
             <PreviewContainer>
-                <MapContainer center={this.state.coordinates} zoom={this.state.zoom} scrollWheelZoom={false} key={this.state.key}>
+                <MapContainer center={this.state.coordinates} zoom={this.state.zoom} scrollWheelZoom={false} key={this.state.key} style={{borderRadius: "3px"}}>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />

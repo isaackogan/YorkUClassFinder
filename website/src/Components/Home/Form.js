@@ -54,7 +54,7 @@ class Form extends Component {
 
         let sx = {height: "50px", width: width}
         let sx2 = {...sx, ...{marginTop: "20px"}}
-
+        let sx3 = {...sx, ...{marginTop: "10px"}}
         return (
             <FormContainer style={{width: width}}>
                 <SessionSearch style={sx} />

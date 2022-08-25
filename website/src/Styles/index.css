@@ -19,6 +19,23 @@ body {
 
 }
 
+.leaflet-control-container .leaflet-routing-container-hide {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  border: none;
+  height: 94.5vh;
+}
+
+.leaflet-control {
+  overflow: auto;
+}
+
+@media(max-width: 1600px) {
+  .leaflet-control-container .leaflet-routing-container-hide {
+    display: none;
+  }
+}
+
 .leaflet-container {
   width: 100% ;
   height: 100%;
@@ -47,28 +64,100 @@ code {
   }
 }
 
+.outerIconDiv {
+  width: 50px;
+  height: 50px;
+  border-radius: 50000px;
+  margin-top: -10px;
+}
+
+.leaflet-popup-content p {
+  margin: 0;
+}
+
+.popupDiv {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  height: 100%
+}
+
+.popupDivButton {
+  width: 100%;
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #e51f1f;
+  color: white;
+  cursor: pointer;
+  height: 36px;
+  font-weight: 600;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  transition-duration: 200ms;
+}
+
+.popupDivButton:hover {
+  background-color: #c11a1a;
+  transition-duration: 200ms;
+}
+.popupDivButton.disabled {
+  color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12);
+  cursor: not-allowed;
+}
+
+.popupDivButton.disabled:hover {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.innerIconDiv {
+width: 100%;
+height: 100%;
+border-radius: 5000px;
+opacity: 0.9;
+display: flex;
+align-content: center;
+justify-content: center;
+text-align: center;
+}
+
+.innerIconText {
+justify-content: center;
+display: flex;
+align-items: center;
+font-family: 'IBM Plex Sans', 'Roboto', sans-serif;
+font-weight: 900;
+line-height: 15px;
+color: #f6f7f8;
+}
+
 .star{
-  width:210px;
-  position: relative;
-  color: #bdbdbd;
+width:210px;
+position: relative;
+color: #bdbdbd;
 }
 
 .rating {
-  width:40%;
-  overflow: hidden;
-  white-space: nowrap;
+width:40%;
+overflow: hidden;
+white-space: nowrap;
 }
 
 .rating span{
-  font-size:50px;
-  white-space: nowrap;
-  overflow: hidden;
-  color: #2c8ed9;
+font-size:50px;
+white-space: nowrap;
+overflow: hidden;
+color: #2c8ed9;
 }
 
 .rating span:before {
-  content:"★★★★★";
-  position: absolute;
-  color: #a3a3a3;
-  z-index: -1;
+content:"★★★★★";
+position: absolute;
+color: #a3a3a3;
+z-index: -1;
 }

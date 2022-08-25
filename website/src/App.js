@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./Pages/Home/Home";
+import Directions from "./Pages/Directions/Directions";
 
 const App = () => {
 
@@ -8,6 +9,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" exact element={<Home />}/>
+                <Route path="/directions" exact element={<Directions />} />
             </Routes>
         </BrowserRouter>
     );

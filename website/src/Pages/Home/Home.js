@@ -6,6 +6,7 @@ import Header from "../../Components/Header";
 import Preview from "../../Components/Home/Preview";
 import Footer from "../../Components/Footer";
 import ErrorModal from "../../Components/ErrorModal";
+import StartError from "../../Tools/StartError";
 
 
 const Background = styled.div`
@@ -61,12 +62,14 @@ const Desc = styled.p`
   
 `;
 
+
 const Home = () => {
 
     return (
         <ThemeProvider theme={theme}>
             <Background>
                 <Header />
+                <StartError />
                 <HomeContainer>
                     <InnerHomeContainer>
                         <Title>Welcome</Title>
