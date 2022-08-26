@@ -1,4 +1,4 @@
-import {Button, Modal} from "@mui/material";
+import {Modal} from "@mui/material";
 import {Component} from "react";
 import styled from "styled-components";
 
@@ -46,7 +46,7 @@ class MapImage extends Component {
         this.first = true;
         this.state = {
             open: false,
-            loaded: false,
+            loaded: false
         }
     }
 
@@ -55,7 +55,7 @@ class MapImage extends Component {
         this.first = false;
 
         // Set up listener
-        document.addEventListener("mapImageModal", (event) => {this.setState({open: true})});
+        document.addEventListener("mapImageModal", () => {this.setState({open: true})});
 
         // Disable image if not found
         if (!this.props.image) {
@@ -67,35 +67,33 @@ class MapImage extends Component {
 
     }
 
-    handleOpenButtonClick() {
-        this.setState({open: true, loaded: false});
-    }
-
-    handleCloseButtonClick() {
-        this.setState({open: false});
+    handleCloseButtonClick(event) {
+        if (event && event.target.id === "buildingPreviewImageModal") {
+            this.setState({open: false});
+        }
     }
 
     render() {
+
         // No image, no go
         if (!this.props.image) {
             this.handleCloseButtonClick();
             return <div />
         }
 
-        let popUpDesc = this.props.building ? <PopUpDesc>{(this.props.building).toUpperCase()}</PopUpDesc> : ""
-        let style = {"visibility": this.state.loaded ? "visible" : "hidden"}
-
         return (
             <div>
                 <Modal
                     open={this.state.open}
-                    onClose={this.handleCloseButtonClick.bind(this)}
+                    onClick={(e) => this.handleCloseButtonClick(e)}
+                    hideBackdrop={true}
+                    style={{backgroundColor: "rgba(0, 0, 0, 0.5)"}}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <ModalBox style={style}>
+                    <ModalBox style={{"visibility": this.state.loaded ? "visible" : "hidden"}}>
                         <PopUpImg src={this.props.image} onLoad={() => this.setState({loaded: true})}/>
-                        {popUpDesc}
+                        {this.props.building ? <PopUpDesc>{(this.props.building).toUpperCase()}</PopUpDesc> : ""}
                     </ModalBox>
                 </Modal>
             </div>

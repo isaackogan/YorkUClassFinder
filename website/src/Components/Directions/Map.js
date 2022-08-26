@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import { MapContainer, TileLayer} from "react-leaflet";
 import styled from "styled-components";
-import {createControlComponent} from "@react-leaflet/core";
 import "leaflet-routing-machine";
-import createRoutineMachineLayer from "./Router";
 import MapImage from "./MapImage";
+import ReactDOM from 'react-dom/client';
+import RouteInfo from "./RouteInfo";
+import RouteMachine from "./RouteMachine";
 
 const OuterContainer = styled.div`
   width: 100vw;
@@ -19,22 +20,17 @@ class Map extends Component {
         // Parse Parameters
         this.interval = null;
         this.params = this.parseUrlQuery();
-
-        if (!this.params) {
-            this.raiseError(encodeURIComponent("Failed to parse query. Did you break something?"))
-            return;
-        }
-
-        // Set up values
+        this.dirRoot = null;
         this.first = true;
 
-        // Default state
-        this.state = {
-            ex: this.params.get("lat"),
-            ey: this.params.get("lng"),
-            sx: null,
-            sy: null,
+        if (!this.params) {
+            return this.raiseError(
+                encodeURIComponent("Failed to parse maps query. Did you break something? You shouldn't break things.")
+            );
         }
+
+        // Default state
+        this.state = {ex: this.params.get("lat"), ey: this.params.get("lng"), sx: null, sy: null,}
 
     }
 
@@ -42,12 +38,10 @@ class Map extends Component {
         try {
             clearInterval(this.interval)
         } catch(ex) {
-
         }
 
         // B64encode the message
-        message = btoa(`error=${message}`)
-        window.location.href = `/#${message}`;
+        window.location.href = `/#${btoa(`error=${message}`)}`;
 
     }
 
@@ -78,6 +72,16 @@ class Map extends Component {
         this.first = false;
         this.getLocation(this);
         this.interval = setInterval(this.getLocation.bind(this), 5000);
+        document.addEventListener("routeInfo", (event) => setTimeout(() => this.onRouteInfo(event.detail)));
+    }
+
+    onRouteInfo(info) {
+
+        let controlContainer = document.getElementsByClassName("leaflet-control-container")?.[0];
+        let topRightContainer = controlContainer.getElementsByClassName("leaflet-top leaflet-right")?.[0];
+        this.dirRoot = (this.dirRoot) || ReactDOM.createRoot(topRightContainer);
+        this.dirRoot.render(<RouteInfo info={info}/>);
+
     }
 
     getLocation() {
@@ -96,10 +100,11 @@ class Map extends Component {
         }
 
         // If it has changed, set the state so we can reroute
-        this.setState({sx: coords.latitude, sy: coords.longitude})
+        this.setState({sx: coords.latitude, sy: coords.longitude});
     }
 
     onFailLocation() {
+
         // If no params provided
         if ((this.params.get("sx") === "null" || this.params.get("sy") === "null")) {
             this.raiseError(encodeURIComponent("Geolocation not available. Enable geolocation to use the web-map service."))
@@ -112,25 +117,22 @@ class Map extends Component {
         }
 
         // Use the query params
-        console.log("[DEBUG] Failed geolocation, reverting to URL parameters");
+        console.log("[DEBUG] Failed geolocation, using URL sx/sy parameters");
         this.setState({sx: this.params.get("sx"), sy: this.params.get("sy")});
 
     }
 
     render() {
-        let machine;
+        let machine = <div/>;
 
         if (this.state.sx && this.state.sy) {
-            let RouteMachine = createControlComponent(createRoutineMachineLayer)
             machine = <RouteMachine
                 sx={parseFloat(this.state.sx)}
                 sy={parseFloat(this.state.sy)}
                 ex={parseFloat(this.state.ex)}
                 ey={parseFloat(this.state.ey)}
                 params={this.params}
-            />
-        } else {
-            machine = <div />;
+            />;
         }
 
         return (

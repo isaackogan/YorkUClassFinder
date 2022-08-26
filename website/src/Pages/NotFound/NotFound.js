@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
-import Form from "../../Components/Home/Form";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from "../../Components/Header";
-import Preview from "../../Components/Home/Preview";
 import Footer from "../../Components/Footer";
-import ErrorModal from "../../Components/ErrorModal";
 import StartError from "../../Tools/StartError";
 import Button from "@mui/material/Button";
 
@@ -13,19 +10,16 @@ import Button from "@mui/material/Button";
 const Background = styled.div`
   display: flex;
   align-items: center;
+  height: 100%;
   flex-direction: column;
-  min-height: 100vh;
 `;
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1600px;
-  width: 90%;
   text-align: center;
   justify-content: center;
   align-items: center;
-  height: 50vh;
 `;
 
 const theme = createTheme({
@@ -37,23 +31,13 @@ const theme = createTheme({
 });
 
 const Title = styled.h1`
+  margin-top: 33%;
   font-weight: bold;
   font-size: 2.4rem;
   margin-bottom: 20px;
 
   @media(max-width: 600px) {
     font-size: 2.0rem;
-  }
-  
-`;
-
-
-const Desc = styled.p`
-  font-size: 1.15rem;
-  margin-top: 15px;
-
-  @media(max-width: 600px) {
-    font-size: 1.0rem;
   }
   
 `;
@@ -74,6 +58,7 @@ const NotFound = () => {
                     >
                         Go Home
                     </Button>
+                    <Footer style={{bottom: 0, position: "absolute"}}/>
                 </HomeContainer>
             </Background>
         </ThemeProvider>

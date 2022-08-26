@@ -1,4 +1,4 @@
-import {Avatar, Button, Dialog, ListItem, ListItemAvatar, ListItemText, Modal} from "@mui/material";
+import {Avatar, Button, ListItem, ListItemAvatar, ListItemText, Modal} from "@mui/material";
 import {declareState} from "../../../Tools/Toolbox";
 import DeclaredComponent from "../../../Tools/DeclaredComponent";
 import styled from "styled-components";
@@ -13,7 +13,7 @@ const ModalBox = styled.div`
   width: 80%;
   max-width: 400px;
   max-height: 380px;
-  box-shadow: 0 3px 24px rgb(0 0 0 / 0.3);;
+  box-shadow: 0 3px 24px rgb(0 0 0 / 0.3);
   background-color: white;
   border: 4px solid rgba(255, 255, 255, 0.8);
   padding-bottom: 13px;
@@ -44,7 +44,7 @@ class ButtonSubmit extends DeclaredComponent {
         {
             "label": "Apple Maps",
             "key": "apple",
-            "image": "/foreign/apple.png",  // http://maps.apple.com/?ll=22,23&z=20&q=Banana+Cheeks
+            "image": "/foreign/apple.png",
             "generator": buildAppleMapsQuery
         },
         {
@@ -106,12 +106,16 @@ class ButtonSubmit extends DeclaredComponent {
         return !(this.state.class && this.state.course && this.state.section && this.state.day);
     }
 
-    handleModalSelect(self, result) {
+    handleModalSelect(self, result, event) {
 
         // Cancelled or Invalid
         if (result == null) {
-            this.setState({open: false});
-            return;
+
+            if (event && event.target.id === "mapSelectModal") {
+                this.setState({open: false});
+            }
+            return
+
         } else setTimeout(() => this.setState({open: false}), 200);
 
         // Actions depending on selection
@@ -126,7 +130,7 @@ class ButtonSubmit extends DeclaredComponent {
     getModal() {
         return (
 
-            <Modal onClose={() => this.handleModalSelect(this, null)} open={this.state.open}>
+            <Modal id={"mapSelectModal"} style={{backgroundColor: "rgba(0, 0, 0, 0.5)"}} hideBackdrop={true} onClick={(e) => this.handleModalSelect(this, null, e)} open={this.state.open}>
                 <ModalBox>
                     <DialogTitle>Select Maps Provider</DialogTitle>
                     <div>

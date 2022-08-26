@@ -53,8 +53,10 @@ class ImageModal extends Component {
         this.setState({open: true, loaded: false});
     }
 
-    handleCloseButtonClick() {
-        this.setState({open: false});
+    handleCloseButtonClick(event) {
+        if (event && event.target.id === "buildingPreviewImageModal") {
+            this.setState({open: false});
+        }
     }
 
     render() {
@@ -63,12 +65,15 @@ class ImageModal extends Component {
 
         return (
             <div>
-                <Button style={{marginTop: "10px", marginBottom: "5px"}} variant="contained" onClick={this.handleOpenButtonClick.bind(this)}>See Picture</Button>
+                <Button style={{marginTop: "10px", marginBottom: "5px"}} variant="contained" onClick={(e) => this.handleOpenButtonClick(e)}>See Picture</Button>
                 <Modal
+                    id={"buildingPreviewImageModal"}
                     open={this.state.open}
-                    onClose={this.handleCloseButtonClick.bind(this)}
+                    onClick={this.handleCloseButtonClick.bind(this)}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
+                    hideBackdrop={true}
+                    style={{backgroundColor: "rgba(0, 0, 0, 0.5)"}}
                 >
                     <ModalBox style={style}>
                         <PopUpImg src={this.props.src} onLoad={() => this.setState({loaded: true})}/>

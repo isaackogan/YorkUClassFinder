@@ -9,6 +9,10 @@
 html {
   width: 100%;
 }
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: "Rubik","sans-serif", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,10 +24,7 @@ body {
 }
 
 .leaflet-control-container .leaflet-routing-container-hide {
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 15px;
-  border: none;
-  height: 94.5vh;
+  display: none;
 }
 
 .leaflet-control {
@@ -65,8 +66,8 @@ code {
 }
 
 .outerIconDiv {
-  width: 50px;
-  height: 50px;
+  width: 26px;
+  height: 26px;
   border-radius: 50000px;
   margin-top: -10px;
 }
@@ -75,10 +76,32 @@ code {
   margin: 0;
 }
 
-.popupDiv {
+.popupCustom {
+  margin: 0;
   font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  background-color: transparent;
+  box-shadow: none !important;
+}
+
+.popupCustom .leaflet-popup-content-wrapper {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgb(0, 0, 0);
+}
+
+.popupCustom .leaflet-popup-close-button {
+  color: white !important;
+  margin: 8px;
+}
+
+.popupCustom .leaflet-popup-tip {
+  background-color: rgba(255, 255, 255, 1);
+
+}
+
+.popupDiv {
   width: 100%;
-  height: 100%
+  height: 100%;
 }
 
 .popupDivButton {
@@ -86,8 +109,8 @@ code {
   padding: 6px 16px;
   border-radius: 4px;
   border: none;
-  background-color: #e51f1f;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
   cursor: pointer;
   height: 36px;
   font-weight: 600;
@@ -99,9 +122,14 @@ code {
   margin-bottom: 5px;
   transition-duration: 200ms;
 }
-
+.leaflet-interactive {
+  cursor: grab;
+}
+.leaflet-marker-icon {
+  cursor: pointer;
+}
 .popupDivButton:hover {
-  background-color: #c11a1a;
+  background-color: rgb(56, 56, 56);
   transition-duration: 200ms;
 }
 .popupDivButton.disabled {
@@ -119,7 +147,6 @@ code {
 width: 100%;
 height: 100%;
 border-radius: 5000px;
-opacity: 0.9;
 display: flex;
 align-content: center;
 justify-content: center;
