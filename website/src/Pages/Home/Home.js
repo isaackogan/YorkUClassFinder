@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from "styled-components";
 import Form from "../../Components/Home/Form";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -62,32 +62,47 @@ const Desc = styled.p`
   
 `;
 
+class Home extends Component {
 
-const Home = () => {
+    constructor(props) {
+        super(props);
 
-    return (
-        <ThemeProvider theme={theme}>
-            <Background>
-                <Header />
-                <StartError />
-                <HomeContainer>
-                    <InnerHomeContainer>
-                        <Title>Welcome</Title>
-                        <Desc>
-                            Welcome to the <strong>Class Find Tool: Student-Made for YorkU!</strong> The goal of this app is to help
-                            new students find their way around York's campus.
-                        </Desc>
-                        <Form />
-                        <Preview />
-                    </InnerHomeContainer>
-                </HomeContainer>
-                <ErrorModal />
-                <Footer />
-            </Background>
-        </ThemeProvider>
-    );
+        this.state = {
+            "navs": "..."
+        }
+    }
 
+    componentDidMount() {
+        fetch("https://yorkapi.isaackogan.com/v1/main/cft/stats").then(r => r.json()).then(r => {
+            this.setState({navs: (r.navs || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})
+        });
+    }
 
+    render() {
+        return (
+            <ThemeProvider theme={theme}>
+                <Background>
+                    <Header />
+                    <StartError />
+                    <HomeContainer>
+                        <InnerHomeContainer>
+                            <Title>Welcome</Title>
+                            <Desc>
+                                Welcome to the <strong>Class Find Tool: Student-Made for YorkU!</strong> The goal of this app is to help
+                                students find their way around York's campus. To date, this project has provided directions to students
+                                on <strong>{this.state.navs}</strong> separate occasions.
+                            </Desc>
+                            <Form />
+                            <Preview />
+                        </InnerHomeContainer>
+                    </HomeContainer>
+                    <ErrorModal />
+                    <Footer />
+                </Background>
+            </ThemeProvider>
+        );
+
+    }
 }
 
 export default Home;

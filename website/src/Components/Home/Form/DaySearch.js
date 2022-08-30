@@ -47,6 +47,13 @@ class DaySearch extends DeclaredComponent {
             declareState({day: null});
         }
 
+        // When the day changes, if not null, tick the directions statistic
+        if (change) {
+            fetch("https://yorkapi.isaackogan.com/v1/main/cft/stats", {method: "post"}).then(r => r.json()).then(r => {
+                this.setState({navs: (r.navs || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})
+            });
+        }
+
     }
 
     clearValue() {

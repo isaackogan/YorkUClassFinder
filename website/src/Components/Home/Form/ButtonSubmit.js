@@ -100,6 +100,7 @@ class ButtonSubmit extends DeclaredComponent {
                 break;
             }
         }
+
     }
 
     isDisabled() {
