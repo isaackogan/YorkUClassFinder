@@ -27,7 +27,7 @@ class RouteInfo extends Component {
 
         if (!this.routeInfo) return <div />;
 
-        let dist = this.routeInfo.totalDistance < 1000 ? `${this.routeInfo.totalDistance} min` : (
+        let dist = this.routeInfo.totalDistance < 1000 ? `${this.routeInfo.totalDistance} m` : (
             `${(this.routeInfo.totalDistance / 1000).toFixed(1)} km`
         )
 
@@ -35,7 +35,7 @@ class RouteInfo extends Component {
             <Container>
                 <DirectionText><u>Directions by Foot</u></DirectionText>
                 <DirectionText><strong>Distance: </strong>{dist}</DirectionText>
-                <DirectionText><strong>Time: </strong>{(this.routeInfo.totalTime / 60).toFixed(1)} m</DirectionText>
+                <DirectionText><strong>Time: </strong>{(this.routeInfo.totalTime / 60).toFixed(1)} min</DirectionText>
             </Container>
         );
     }
