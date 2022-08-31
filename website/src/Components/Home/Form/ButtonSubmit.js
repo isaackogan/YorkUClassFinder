@@ -59,8 +59,8 @@ class ButtonSubmit extends DeclaredComponent {
         "title": "Cannot Get Directions",
         "body": (
             <p>
-                This class does not meet in person today. Google Maps directions are only available for classes that
-                have a scheduled, in-person meeting time.
+                Could not find this class's location. Either this class meets remotely on this day,
+                or the building's name could not be parsed.
             </p>
         )
     }

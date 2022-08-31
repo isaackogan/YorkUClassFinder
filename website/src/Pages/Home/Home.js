@@ -94,7 +94,7 @@ class Home extends Component {
                             <Desc>
                                 Welcome to the <strong>Class Find Tool: Student-Made for YorkU!</strong> The goal of this app is to help
                                 students find their way around York's campus. To date, this project has provided directions to students
-                                on <strong>{this.state.navs}</strong> separate occasions.
+                                <strong>{this.state.navs}</strong> total times.
                             </Desc>
                             <Form />
                             <Preview />

@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 
 function modifyQuery(props) {
     props.buildingCode = props.day?.["room"]?.trim()?.split(" ")?.[0];
@@ -38,12 +37,22 @@ export function buildOSMQuery(props) {
 
     let buildingCode = props?.day?.["room"]?.trim()?.split(" ")?.[0];
 
+    // Invalid coords default to YorkU
+    let lat, lng;
+    if (props.mapCoords.lat && props.mapCoords.lng) {
+        lat = props.mapCoords.lat;
+        lng = props.mapCoords.lng;
+    } else {
+        lat = "43.773353";
+        lng = "-79.502340";
+    }
+
     let internalQuery = {
         picture: null,
         courseCode: props.course,
         query: `${props.buildingName}, Toronto`,
-        lat: props.mapCoords.lat,
-        lng: props.mapCoords.lng,
+        lat: lat,
+        lng: lng,
         day: props.day.day,
         duration: props.day.duration,
         room: props.day.room,
