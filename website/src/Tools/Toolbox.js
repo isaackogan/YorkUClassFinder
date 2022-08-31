@@ -62,8 +62,14 @@ export function generateKey(current, iteration = 0) {
 }
 
 export function convertTime(time) {
+
+    // Fix bad formatting
+    if ((time.split(":")?.[0]?.length || 2) < 2) time = "0" + time;
+    else if (time === "24:00") time = "00:00";
+
+    // Parse Time
     try {
-        time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+        time = time.toString().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
 
         if (time.length > 1) {
             time = time.slice (1);
@@ -73,7 +79,7 @@ export function convertTime(time) {
 
         return time.join ('');
     } catch (ex) {
-        return null;
+        return time;
     }
 }
 
