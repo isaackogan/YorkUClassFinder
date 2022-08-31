@@ -6,13 +6,15 @@ import styled from "styled-components";
 import ButtonSubmit from "./Form/ButtonSubmit";
 import SessionSearch from "./Form/SessionSearch";
 import {declareState} from "../../Tools/Toolbox";
+import ShareButton from "./Form/ShareButton";
+import {ButtonGroup} from "@mui/material";
 
 const {Component} = require("react")
 
 const FormContainer = styled.div`
   display: inline-block;
   height: 100%;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 `;
 
 
@@ -62,7 +64,10 @@ class Form extends Component {
                 <SectionSearch style={sx2}/>
                 <ClassSearch style={sx2}/>
                 <DaySearch style={sx2}/>
-                <ButtonSubmit style={sx2} />
+                <ButtonGroup style={sx2} variant="contained" aria-label="outlined primary button group">
+                    <ButtonSubmit />
+                    <ShareButton />
+                </ButtonGroup>
             </FormContainer>
         )
     }

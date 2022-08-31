@@ -19,10 +19,12 @@ class DaySearch extends DeclaredComponent {
 
     constructor(props) {
         super(props);
-        this.state = {days: [], value: null}
+        this.state = {days: null, value: null}
     }
 
     onDeclareState(stateChange, keys) {
+        this.searchParamParse(stateChange, keys);
+
         // If class changes
         if (keys.includes("class")) {
             this.clearValue();
@@ -36,12 +38,34 @@ class DaySearch extends DeclaredComponent {
         this.setState(stateChange);
     }
 
+    searchParamParse(stateChange, _) {
+        if (stateChange?.querySearch?.from !== "ClassSearch") return;
+
+        this.waitForState("days", () => {
+            let upper = stateChange?.querySearch?.day?.toUpperCase();
+            let formatted = `${upper} (${DaySearch.abbreviations[upper]})`;
+            let cont = false;
+
+            // Check if it's in there
+            for (let day of this.state.days) {
+                if (DaySearch.getQualifiedName(day) === formatted) {
+                    cont = true;
+                    break;
+                }
+            }
+
+            if (!cont) return;
+            this.handleChange(null, formatted);
+
+        });
+    }
+
     handleChange(event, change) {
         this.setState({value: change});
 
         // When the day changes, get the new day
         if (change) {
-            let day = this.state.days.filter(day => this.getQualifiedName(day) === change)?.[0];
+            let day = this.state.days.filter(day => DaySearch.getQualifiedName(day) === change)?.[0];
             declareState({day: day});
         } else {
             declareState({day: null});
@@ -57,20 +81,20 @@ class DaySearch extends DeclaredComponent {
     }
 
     clearValue() {
-        this.setState({value: null, day: null, days: []});
+        this.setState({value: null, day: null, days: null});
         declareState({day: null});
     }
 
-    getQualifiedName(day) {
+    static getQualifiedName(day) {
         let cleanedDay = day?.["day"]?.trim();
         return `${cleanedDay} (${DaySearch.abbreviations[cleanedDay]})`;
     }
 
     render() {
-        let optionList = []
+        let optionList = [];
         for (let day of this.state.days || []) {
             if (!day?.day) continue;
-            optionList.push(this.getQualifiedName(day));
+            optionList.push(DaySearch.getQualifiedName(day));
         }
 
         return (

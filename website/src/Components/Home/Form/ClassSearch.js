@@ -20,6 +20,8 @@ class ClassSearch extends DeclaredComponent {
     }
 
     onDeclareState(stateChange, keys) {
+        this.searchParamParse(stateChange, keys);
+
         // If course name changes
         if (keys.includes("section")) {
             this.clearValue();
@@ -32,6 +34,29 @@ class ClassSearch extends DeclaredComponent {
         stateChange = {classes: stateChange.classes};
         this.setState(stateChange);
 
+    }
+
+    searchParamParse(stateChange, _) {
+        if (stateChange?.querySearch?.from !== "SectionSearch") return;
+
+        this.waitForState("classes", () => {
+            let upper = stateChange?.querySearch?.class?.toUpperCase()
+            let cont = false;
+
+            // Check if it's in there
+            for (let classy of this.state.classes) {
+                if (this.getQualifiedName(classy) === upper) {
+                    cont = true;
+                    break;
+                }
+            }
+
+            if (!cont) return;
+
+            this.handleChange(null, upper);
+            stateChange.querySearch.from = "ClassSearch";
+            declareState({"querySearch": stateChange.querySearch});
+        });
     }
 
     handleChange(event, change) {
@@ -52,11 +77,10 @@ class ClassSearch extends DeclaredComponent {
             declareState({days: []});
         }
 
-
     }
 
     clearValue() {
-        this.setState({value: null, classes: []});
+        this.setState({value: null, classes: null});
         declareState({class: null});
     }
 

@@ -8,11 +8,13 @@ class CourseSearch extends DeclaredComponent {
 
     constructor(props) {
         super(props);
-        this.state = {session: null, courses: [], value: null, showCourses: false};
+        this.state = {session: null, courses: null, value: null, showCourses: false};
 
     }
 
     onDeclareState(stateChange, keys) {
+        this.searchParamParse(stateChange, keys);
+
         // Only care about session
         if (!keys.includes("session")) return;
 
@@ -21,7 +23,7 @@ class CourseSearch extends DeclaredComponent {
         this.setState(stateChange);
 
         // If session is valid
-        if (stateChange.session) {
+        if (stateChange.session && stateChange.session !== this.state.session) {
             fetch(`https://yorkapi.isaackogan.com/v1/courses/info/${stateChange.session}/codes`).then(res => res.json()).then(array => {
                 this.setState({courses: array || []});
             });
@@ -31,12 +33,29 @@ class CourseSearch extends DeclaredComponent {
 
     }
 
+    searchParamParse(stateChange, _) {
+        if (stateChange?.querySearch?.from !== "SessionSearch") return;
+
+        this.waitForState("courses", () => {
+            let upper = stateChange?.querySearch?.course?.toUpperCase();
+            if (!this.state.courses.includes(upper)) return;
+            this.handleChange(null, upper);
+
+            stateChange.querySearch.from = "CourseSearch";
+            declareState({"querySearch": stateChange.querySearch});
+        })
+
+    }
+
     clearValue() {
         this.setState({value: null});
         declareState({course: null});
     }
 
     handleInputChange(event, value) {
+
+        // If event is null, we set it manually
+        if (event === null) return;
 
         // Close until more typed
         if (value.length < 4) {
@@ -59,7 +78,7 @@ class CourseSearch extends DeclaredComponent {
                 declareState({sections: json.sections});
             });
         } else {
-            declareState({sections: []});
+            declareState({sections: null});
         }
 
         declareState({course: change});
@@ -75,9 +94,9 @@ class CourseSearch extends DeclaredComponent {
                     disablePortal
                     id="course-search-input"
                     value={this.state.value}
-                    disabled={!(this.state.session && this.state.courses.length > 1)}
+                    disabled={!(this.state.session && (this.state?.courses?.length || 0) > 1)}
                     open={this.state.showCourses}
-                    options={this.state.courses}
+                    options={this.state.courses || []}
                     sx={this.baseStyle}
                     onInputChange={this.handleInputChange.bind(this)}
                     onChange={this.handleChange.bind(this)}

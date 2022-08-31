@@ -12,7 +12,6 @@ class SessionSearch extends DeclaredComponent {
     }
 
     componentDidMount() {
-
         // Make sure it's first
         if (!this.first) return;
         this.first = false;
@@ -23,8 +22,28 @@ class SessionSearch extends DeclaredComponent {
             let defaultSession = getDefaultSession(sessions);
             this.setState({sessions: sessions, value: defaultSession});
             declareState({session: defaultSession});
+            this.parseURL(sessions);
         });
 
+    }
+
+    parseURL(sessions) {
+        let url = new URL(window.location.href);
+        let sess = url.searchParams.get("session")?.toUpperCase();
+        if (!sessions.includes(sess)) return;
+
+        this.handleChange(null, sess);
+
+        declareState({
+            "querySearch": {
+                from: "SessionSearch",
+                session: sess,
+                course: url.searchParams.get("course"),
+                section: url.searchParams.get("section"),
+                class: url.searchParams.get("class"),
+                day: url.searchParams.get("day")
+            }
+        });
     }
 
     handleChange(event, result) {

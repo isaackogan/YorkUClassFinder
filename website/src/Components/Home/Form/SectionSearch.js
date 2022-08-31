@@ -6,10 +6,12 @@ class SectionSearch extends DeclaredComponent {
 
     constructor(props) {
         super(props);
-        this.state = {sections: [], value: null}
+        this.state = {sections: null, value: null}
     }
 
     onDeclareState(stateChange, keys) {
+        this.searchParamParse(stateChange, keys);
+
         // If course name changes
         if (keys.includes("course")) this.clearValue();
 
@@ -17,8 +19,21 @@ class SectionSearch extends DeclaredComponent {
         if (!keys.includes("sections")) return;
 
         // Update session
-        stateChange = {sections: stateChange.sections || []};
+        stateChange = {sections: stateChange.sections || null};
         this.setState(stateChange);
+    }
+
+    searchParamParse(stateChange, _) {
+        if (stateChange?.querySearch?.from !== "CourseSearch") return;
+
+        this.waitForState("sections", () => {
+            let upper = stateChange?.querySearch?.section?.toUpperCase();
+            if (!this.state.sections[upper]) return;
+            this.handleChange(null, upper);
+            stateChange.querySearch.from = "SectionSearch";
+            declareState({"querySearch": stateChange.querySearch});
+        });
+
     }
 
     handleChange(event, change) {
@@ -38,7 +53,7 @@ class SectionSearch extends DeclaredComponent {
     }
 
     clearValue() {
-        this.setState({value: null, sections: []});
+        this.setState({value: null, sections: null});
         declareState({section: null});
     }
 
@@ -48,10 +63,10 @@ class SectionSearch extends DeclaredComponent {
             <div style={this.props.style}>
                 <Autocomplete
                     disablePortal
-                    disabled={this.state.sections.length < 1}
+                    disabled={Object.keys(this.state.sections || []) < 1}
                     id="section-search-input"
                     onChange={this.handleChange.bind(this)}
-                    options={Object.keys(this.state.sections)}
+                    options={Object.keys(this.state.sections || [])}
                     sx={this.baseStyle}
                     value={this.state.value}
                     renderInput={(params) => <TextField {...params} label="Section" />}

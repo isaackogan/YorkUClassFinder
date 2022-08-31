@@ -154,15 +154,26 @@ class ButtonSubmit extends DeclaredComponent {
     render() {
 
         let valid = buildGoogleMapsQuery(this.state);
+        let style = {
+            ...this.props.style,
+            ...{
+                "width": "100%",
+                "height": "100%",
+                "borderTopRightRadius": 0,
+                "borderBottomRightRadius": 0
+            },
+            "borderRight": `1px solid ${this.isDisabled() ? '#bdbdbd' : '#f5ecec'}`
+        };
 
         return (
-            <div>
+            <div style={{"width": "100%"}}>
                 {this.getModal()}
                 <Button
                     disabled={this.isDisabled()}
-                    variant="contained"
                     onClick={() => valid ? this.setState({open: true}) : declareState({errorModal: this.roomNotFound})}
-                    style={{...this.props.style, ...{"width": "100%"}}}>Get Detailed Directions
+                    style={style}
+                >
+                    Get Detailed Directions
                 </Button>
             </div>
         )

@@ -66,13 +66,17 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
+        this.first = true;
 
         this.state = {
             "navs": "..."
-        }
+        };
+
     }
 
     componentDidMount() {
+        if (!this.first) return;
+        this.first = false;
         fetch("https://yorkapi.isaackogan.com/v1/main/cft/stats").then(r => r.json()).then(r => {
             this.setState({navs: (r.navs || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})
         });

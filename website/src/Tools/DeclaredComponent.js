@@ -16,8 +16,16 @@ class DeclaredComponent extends Component {
             clearInterval(interval);
             self.onDeclareState.bind(self)(event.detail, Object.keys(event.detail));
         }, 100);
-
     }
+
+    waitForState(key, callback) {
+        let interval = setInterval(() => {
+            if (!this?.state?.[key]) return;
+            clearInterval(interval);
+            callback();
+        }, 100);
+    }
+
 
     setState(state, callback) {
         super.setState(state, callback);
