@@ -7,6 +7,7 @@ import Preview from "../../Components/Home/Preview";
 import Footer from "../../Components/Footer";
 import ErrorModal from "../../Components/ErrorModal";
 import StartError from "../../Tools/StartError";
+import ChrisAdvert from "../../Components/Home/Advert/ChrisAdvert";
 
 
 const Background = styled.div`
@@ -98,6 +99,7 @@ class Home extends Component {
                             </Desc>
                             <Form />
                             <Preview />
+                            <ChrisAdvert />
                         </InnerHomeContainer>
                     </HomeContainer>
                     <ErrorModal />
