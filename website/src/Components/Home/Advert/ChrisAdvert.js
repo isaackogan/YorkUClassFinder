@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const AdvertContainer = styled.div`
   width: 100%;
-  display: flex;
+  display: none; // Disable until election starts
   justify-content: center;
   align-items: center;
   margin-top: 36px;
