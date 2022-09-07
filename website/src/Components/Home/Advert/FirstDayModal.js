@@ -96,7 +96,7 @@ class FirstDayModal extends Component {
                         I want to wish you <strong>good luck</strong> on a complicated, exciting, and scary four years.
                         We've got this in the bag, right?
                         <br/><br/>
-                        Follow me on <Link target="_blank" href={this.instagram}>Instagram</Link> or <Link target="_blank" href={this.linkedin}>LinkedIn</Link>,
+                        Follow me on <Link target="_blank" href={this.instagram}>Instagram</Link> and/or <Link target="_blank" href={this.linkedin}>LinkedIn</Link>,
                         I'm hoping to make new connections at York. Good luck, and enjoy this app!
                     </DialogContent>
                     <DialogActions>
