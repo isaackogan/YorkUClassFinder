@@ -100,7 +100,7 @@ class CourseSearch extends DeclaredComponent {
                     sx={this.baseStyle}
                     onInputChange={this.handleInputChange.bind(this)}
                     onChange={this.handleChange.bind(this)}
-                    renderInput={(params) => <TextField {...params} label="Course Name" />}
+                    renderInput={(params) => <TextField {...params} label="Course Code" />}
                     onClose={() => this.setState({showCourses: false})}
                 />
             </div>
