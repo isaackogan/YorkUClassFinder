@@ -8,6 +8,7 @@ import Footer from "../../Components/Footer";
 import ErrorModal from "../../Components/ErrorModal";
 import StartError from "../../Tools/StartError";
 import ChrisAdvert from "../../Components/Home/Advert/ChrisAdvert";
+import FirstDayModal from "../../Components/Home/Advert/FirstDayModal";
 
 
 const Background = styled.div`
@@ -103,6 +104,7 @@ class Home extends Component {
                         </InnerHomeContainer>
                     </HomeContainer>
                     <ErrorModal />
+                    <FirstDayModal />
                     <Footer />
                 </Background>
             </ThemeProvider>
