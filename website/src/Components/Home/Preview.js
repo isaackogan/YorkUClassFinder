@@ -101,7 +101,7 @@ class Preview extends DeclaredComponent {
         if (!buildingName) return null;
 
         buildingName = buildingName
-            .replaceAll(/[^a-zA-Z0-9 ,]/g, "")
+            .replaceAll(/[^a-zA-Z0-9 ]/g, "")
             .replaceAll("Glendon Campus", "")
             .replaceAll(" +", " ");
 
