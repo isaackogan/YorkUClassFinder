@@ -9,7 +9,6 @@ import ErrorModal from "../../Components/ErrorModal";
 import StartError from "../../Tools/StartError";
 import ChrisAdvert from "../../Components/Home/Advert/ChrisAdvert";
 
-
 const Background = styled.div`
   display: flex;
   align-items: center;
