@@ -18,9 +18,18 @@ class SectionSearch extends DeclaredComponent {
         // Only care about sections
         if (!keys.includes("sections")) return;
 
-        // Update session
+        // Update sections
         stateChange = {sections: stateChange.sections || null};
         this.setState(stateChange);
+
+        // Automatically fill if only one option
+        stateChange.sectionKeys = Object.keys(stateChange.sections);
+        if (stateChange.sectionKeys.length === 1) {
+            stateChange.querySearch = {};
+            stateChange.querySearch.from = "CourseSearch";
+            stateChange.querySearch.section = stateChange.sectionKeys[0];
+            this.searchParamParse(stateChange, Object.keys(stateChange));
+        }
     }
 
     searchParamParse(stateChange, _) {

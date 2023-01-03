@@ -152,7 +152,7 @@ const Header = () => {
                         <ButtonContainer>
                             <Button target="_blank" href="https://github.com/isaackogan/YorkUClassFinder">GitHub Project</Button>
                             <Button target="_blank" href="https://w2prod.sis.yorku.ca/Apps/WebObjects/cdm.woa/wa/DirectAction/cds">View Timetable</Button>
-                            <Button target="_blank" href="https://yorkapi.isaackogan.com">Course API</Button>
+                            <Button target="_blank" href="https://www.reddit.com/r/yorku/comments/vcr0q1/yorks_underground_and_groundlevel_pedways_can/">Tunnel Map</Button>
                         </ButtonContainer>
                         <ButtonContainer>
                             <DevButton href="https://github.com/isaackogan/YorkUClassFinder/issues" target="_blank">SUGGEST</DevButton>

@@ -34,6 +34,15 @@ class ClassSearch extends DeclaredComponent {
         stateChange = {classes: stateChange.classes};
         this.setState(stateChange);
 
+        // Automatically fill if only one option
+        stateChange.classKeys = Object.keys(stateChange.classes);
+        if (stateChange.classKeys.length === 1) {
+            stateChange.querySearch = {};
+            stateChange.querySearch.from = "SectionSearch";
+            stateChange.querySearch.class = this.getQualifiedName(stateChange.classes[stateChange.classKeys[0]]);
+            this.searchParamParse(stateChange, Object.keys(stateChange));
+        }
+
     }
 
     searchParamParse(stateChange, _) {

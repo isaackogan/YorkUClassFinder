@@ -36,6 +36,15 @@ class DaySearch extends DeclaredComponent {
 
         stateChange = {days: stateChange.days};
         this.setState(stateChange);
+
+        // Automatically fill if only one option
+        if (stateChange.days.length === 1) {
+            stateChange.querySearch = {};
+            stateChange.querySearch.from = "ClassSearch";
+            stateChange.querySearch.day = stateChange.days[0]?.day;
+            this.searchParamParse(stateChange, Object.keys(stateChange));
+        }
+
     }
 
     searchParamParse(stateChange, _) {

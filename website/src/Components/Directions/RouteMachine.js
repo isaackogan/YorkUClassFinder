@@ -13,12 +13,13 @@ class Coordinate {
 function getMeIcon() {
     let html = (`
         <div style="z-index: ${zIndex}">
-            <div style="display: flex; align-items: center; justify-content: center; background-color: rgba(78,150,246,0.39); outline: 1px solid rgba(83,149,236,0.38)" class="outerIconDiv">
+            <div style="display: flex; align-items: center; justify-content: center; background-color: rgba(78,150,246,0.39); border: 1px solid rgba(83,149,236,0.38)" class="outerIconDiv">
                 <div style="border: 2px solid white; width: 50%; height: 50%; background-color: rgb(74,119,222);" class="innerIconDiv">
                 </div>
             </div>
         </div>
     `);
+
     return L.divIcon({
         iconSize: [26, 26],
         iconAnchor: [13, 0],
@@ -33,7 +34,7 @@ function getDestinationIcon(text, color, zIndex = "0") {
 
     let html = (`
         <div style="z-index: ${zIndex}">
-            <div style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; background-color: rgb(0,0,0); outline: 1px solid rgba(83,149,236,0.38)" class="outerIconDiv">
+            <div style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; background-color: rgb(0,0,0); border: 1px solid rgba(83,149,236,0.38)" class="outerIconDiv">
                 <div style="border: 4px solid #ffffff; width: 33%; height: 33%; background-color: rgb(0,0,0);" class="innerIconDiv">
                     <img alt="" src="/marker.png" style="width: 35px; height: 35px; opacity: 1; z-index: 1000; margin-top: -33px;"/>
                 </div>

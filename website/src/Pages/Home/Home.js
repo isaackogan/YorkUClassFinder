@@ -10,7 +10,6 @@ import StartError from "../../Tools/StartError";
 import NewYears from "../../Components/Home/NewYears";
 import FirstDayModal from "../../Components/Home/Advert/FirstDayModal";
 
-
 const Background = styled.div`
   display: flex;
   align-items: center;
