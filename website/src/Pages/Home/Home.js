@@ -7,7 +7,8 @@ import Preview from "../../Components/Home/Preview";
 import Footer from "../../Components/Footer";
 import ErrorModal from "../../Components/ErrorModal";
 import StartError from "../../Tools/StartError";
-import ChrisAdvert from "../../Components/Home/Advert/ChrisAdvert";
+import NewYears from "../../Components/Home/NewYears";
+import FirstDayModal from "../../Components/Home/Advert/FirstDayModal";
 
 
 const Background = styled.div`
@@ -86,7 +87,8 @@ class Home extends Component {
     render() {
         return (
             <ThemeProvider theme={theme}>
-                <Background>
+                <NewYears />
+                <Background style={{zIndex: 100}}>
                     <Header />
                     <StartError />
                     <HomeContainer>
@@ -95,11 +97,11 @@ class Home extends Component {
                             <Desc>
                                 Welcome to the <strong>Class Find Tool: Student-Made for YorkU!</strong> The goal of this app is to help
                                 students find their way around York's campus. To date, this project has provided directions to students
-                                <strong> {this.state.navs}</strong> total times.
+                                <strong> {this.state.navs}</strong> total times. Now serving the <strong>Winter 2023</strong> semester!
                             </Desc>
                             <Form />
                             <Preview />
-                            <ChrisAdvert />
+                            <FirstDayModal />
                         </InnerHomeContainer>
                     </HomeContainer>
                     <ErrorModal />

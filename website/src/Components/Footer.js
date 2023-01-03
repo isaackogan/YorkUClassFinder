@@ -52,29 +52,27 @@ const BlackContainer = styled.div`
   }
 `;
 
-
 const DevButton = styled.a`
   text-decoration: none;
   color: rgba(255, 255, 255, 1);
-  cursor: pointer;
+  cursor: ${props => props["nounderline"] ? 'inherit' : 'pointer'};
   font-size: 1.0rem;
   font-weight: 600;
   margin-left: 25px;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: ${props => props["nounderline"] ? '' : 'underline'};
   }
-  
+
   @media(max-width: 400px) {
     font-size: 0.9rem;
     margin-left: 0;
   }
-  
+
   @media(max-width: 300px) {
     font-size: 0.8rem;
   }
 `;
-
 
 const FooterLogo = styled.img`
   height: 50px;
@@ -89,12 +87,12 @@ const Footer = (props) => {
     return (
         <HeaderContainer style={props.style}>
             <HeaderSubContainer style={{backgroundColor: "black", "height": "60px"}}>
-                <DevButton style={{marginLeft: "0"}} href="https://paypal.me/isaackogan" target="_blank">100% Unaffiliated with YorkU</DevButton>
+                <DevButton style={{marginLeft: "0"}} nounderline>100% Unaffiliated with YorkU</DevButton>
             </HeaderSubContainer>
             <HeaderSubContainer2>
                 <BlackContainer>
                     <FooterLogo src={`/isaaclogo.png?cachebust=69420`} />
-                    <DevButton href="https://paypal.me/isaackogan" target="_blank">DONATE</DevButton>
+                    <DevButton href="https://github.com/isaackogan/YorkUClassFinder/issues" target="_blank">SUGGEST</DevButton>
                     <DevButton href="https://isaackogan.com/" target="_blank">CONTACT</DevButton>
                 </BlackContainer>
             </HeaderSubContainer2>

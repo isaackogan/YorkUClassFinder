@@ -11,6 +11,7 @@ html {
 }
 html, body, #root {
   height: 100%;
+  z-index: 1;
 }
 
 body {
@@ -37,6 +38,15 @@ body {
   }
 }
 
+#tsparticles {
+  z-index: -100;
+  pointer-events: none;
+}
+
+#tsparticles > canvas {
+  pointer-events: none !important;
+
+}
 .leaflet-container {
   width: 100% ;
   height: 100%;

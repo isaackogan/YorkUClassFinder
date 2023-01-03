@@ -155,7 +155,7 @@ const Header = () => {
                             <Button target="_blank" href="https://yorkapi.isaackogan.com">Course API</Button>
                         </ButtonContainer>
                         <ButtonContainer>
-                            <DevButton href="https://paypal.me/isaackogan" target="_blank">DONATE</DevButton>
+                            <DevButton href="https://github.com/isaackogan/YorkUClassFinder/issues" target="_blank">SUGGEST</DevButton>
                             <DevButton href="https://isaackogan.com/" target="_blank">CONTACT</DevButton>
                         </ButtonContainer>
                     </FlexCenter>
