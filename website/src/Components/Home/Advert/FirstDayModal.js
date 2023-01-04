@@ -135,12 +135,12 @@ class FirstDayModal extends Component {
                         Welcome! I'm <Link href={this.personal}>Isaac Kogan</Link>, this is my first year at York and at University, and you're on
                         my app, <strong>Class Find Tool for YorkU.</strong>
                         <br/><br/>
-                        I want to wish you <strong>good luck</strong> on the second semester, starting:
+                        Good luck on the second semester, starting:
                         <br/><br/>
                         <FirstDayCountdown />
                         <br/>
-                        Reach out on <Link target="_blank" href={this.instagram}>Instagram</Link> or <Link target="_blank" href={this.linkedin}>LinkedIn</Link>,
-                        I'm hoping to make new connections at York. Good luck, and enjoy the app!
+                        Feel free to reach out on <Link target="_blank" href={this.instagram}>Instagram</Link> or <Link target="_blank" href={this.linkedin}>LinkedIn</Link>.
+                        Otherwise, good luck, and enjoy the app! It was a pleasure to make.
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => this.onClose()}>
