@@ -50,17 +50,6 @@ export function declareState(newState) {
     document.dispatchEvent(new CustomEvent("declareState", {detail: newState}));
 }
 
-
-
-export function generateKey(current, iteration = 0) {
-    if (iteration > 2) {
-        return current;
-    }
-
-    current += (Math.random() + 1).toString(36).substring(7);
-    return generateKey(current, iteration + 1);
-}
-
 export function convertTime(time) {
 
     // Fix bad formatting

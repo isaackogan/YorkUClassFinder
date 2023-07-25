@@ -1,9 +1,11 @@
 
 import styled from "styled-components";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {MapContainer, TileLayer, Marker, Popup, useMap} from 'react-leaflet';
 import ImageModal from "./Preview/ImageModal";
-import {convertTime, declareState, generateKey} from "../../Tools/Toolbox";
+import {convertTime, declareState} from "../../Tools/Toolbox";
 import DeclaredComponent from "../../Tools/DeclaredComponent";
+import L from 'leaflet';
+import React from "react";
 
 const PreviewContainer = styled.div`
   display: flex;
@@ -18,7 +20,7 @@ const Text = styled.span`
   width: 100%;
 `;
 
-const PopUpTextBox = styled.div`
+const PopupTextBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -40,8 +42,10 @@ class Preview extends DeclaredComponent {
             building_codes: {},
             zoom: 14.5,
             coordinates: this.lastCoords,
-            key: generateKey()
         }
+
+        this.popupReference = React.createRef();
+
     }
 
     onDeclareState(stateChange, stateKeys) {
@@ -79,12 +83,12 @@ class Preview extends DeclaredComponent {
             let lon = result["lon"];
             if (!(lat && lon)) return;
 
-            let key = generateKey();
             this.lastCoords = this.state.coordinates;
 
             // Make sure we're not refreshing for nothing
             if (!(this.lastCoords[0] === lat && this.lastCoords[1] === lon)) {
-                self.setState({coordinates: [lat, lon], zoom: 18, key: key});
+                this.popupReference = React.createRef();
+                self.setState({coordinates: [lat, lon], zoom: 18});
                 declareState({mapCoords: {lat: lat, lng: lon}});
             }
 
@@ -111,17 +115,37 @@ class Preview extends DeclaredComponent {
 
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        if (this.allDataPresent()) {
+            setTimeout(() => {
+                this.popupReference.current?.openPopup();
+            }, 500);
+        }
+    }
 
     render() {
+
+        const icon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+            className: "main-popup-icon"
+        });
+
         return (
             <PreviewContainer>
-                <MapContainer center={this.state.coordinates} zoom={this.state.zoom} scrollWheelZoom={false} key={this.state.key} style={{borderRadius: "3px"}}>
+                <MapContainer center={this.state.coordinates} zoom={this.state.zoom} scrollWheelZoom={false} style={{borderRadius: "3px"}}>
+                    <MapController coordinates={this.state.coordinates} zoom={this.state.zoom} />
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <Marker position={this.state.coordinates}>
+                    <Marker ref={this.popupReference} icon={icon} position={this.state.coordinates} >
                         <Popup maxWidth={"200"}>
-                            {this.getPopUp()}
+                            {this.getPopupContent()}
                         </Popup>
                     </Marker>
                 </MapContainer>
@@ -129,27 +153,42 @@ class Preview extends DeclaredComponent {
         )
     }
 
-    getPopUp() {
-        if (!(this.state.class && this.state.course && this.state.section && this.state.day)) {
+    allDataPresent() {
+        return this.state.class && this.state.course && this.state.section && this.state.day;
+    }
+
+    getPopupContent() {
+        if (!this.allDataPresent()) {
             return "York University";
         }
 
         let buildingCode = this.state.day?.["room"]?.trim()?.split(" ")?.[0];
 
         return (
-            <PopUpTextBox>
+            <PopupTextBox>
                 <Text style={{marginBottom: "5px", marginTop: "5px"}}><strong>{this.state.course}</strong></Text>
                 <Text><strong>Time: </strong>{convertTime(this.state.day?.["time"]?.trim())}</Text>
                 <Text><strong>Duration: </strong>{this.state.day["duration"] || "N/A"} min</Text>
                 <Text><strong>Location: </strong>{this.state.day["room"]}</Text>
                 <ImageModal desc={this.state.building_codes[buildingCode]} src={`https://yorkapi.isaackogan.com/v1/main/home/building-images?code=${buildingCode}`} />
-            </PopUpTextBox>
+            </PopupTextBox>
         )
 
     }
 
+}
 
+function MapController({coordinates, zoom}) {
+
+    const map = useMap();
+
+    if (coordinates?.length === 2) {
+        map.setView(coordinates, zoom);
+    }
+
+    return null;
 
 }
+
 
 export default Preview;

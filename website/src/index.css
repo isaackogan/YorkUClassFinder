@@ -12,6 +12,7 @@ html {
 html, body, #root {
   height: 100%;
   z-index: 1;
+  background: #eee !important;
 }
 
 body {
@@ -26,6 +27,14 @@ body {
 
 .leaflet-control-container .leaflet-routing-container-hide {
   display: none;
+}
+
+.notifs-link-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  margin-top: -2px;
+  margin-bottom: -7px;
 }
 
 .leaflet-control {
@@ -197,4 +206,8 @@ content:"★★★★★";
 position: absolute;
 color: #a3a3a3;
 z-index: -1;
+}
+
+.svg-icon {
+  fill: currentColor;
 }

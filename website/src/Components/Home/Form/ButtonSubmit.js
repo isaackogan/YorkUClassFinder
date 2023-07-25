@@ -32,7 +32,7 @@ class ButtonSubmit extends DeclaredComponent {
         {
             "label": "Class Find Tool",
             "key": "osm",
-            "image": "/logo512.png",
+            "image": "/map.svg",
             "generator": buildOSMQuery
         },
         {

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from "styled-components";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from "../../Components/Header";
-import Footer from "../../Components/Footer";
 import StartError from "../../Tools/StartError";
 import Button from "@mui/material/Button";
 
@@ -58,7 +57,6 @@ const NotFound = () => {
                     >
                         Go Home
                     </Button>
-                    <Footer style={{bottom: 0, position: "absolute"}}/>
                 </HomeContainer>
             </Background>
         </ThemeProvider>

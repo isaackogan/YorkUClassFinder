@@ -30,27 +30,17 @@ const HeaderContainer = styled.div`
   align-items: center;
   font-family: 'IBM Plex Sans', 'Roboto', sans-serif;
   font-weight: 500;
-`;
-
-const HeaderSubContainer = styled.div`
-  width: 100%;
-  height: 50px;
+  background-color: #e31837;
   display: flex;
   justify-content: center;
 `;
 
-
-const Header2XSubContainer = styled.div`
-  max-width: 1300px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-const FirstRedText = styled.div`
+const Title = styled.div`
   font-size: 1.3em;
   color: white;
-
+  margin-left: 20px;
+  cursor: default;
+  
   @media(max-width: 700px) {
     font-size: 1.0em;
   }
@@ -64,104 +54,69 @@ const FirstRedText = styled.div`
   }
 `;
 
-const Button = styled.a`
-  height: 100%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.75);
-  padding: 0 10px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 400;
-  content: "•";
-  &:hover {
-    background-color: #e31837;
-  }
+const ContentContainer = styled.div`
+  max-width: 1600px;
+  width: 90%;
+`;
 
-  @media(max-width: 700px) {
-    padding: 0 10px;
-    font-size: 0.8rem;
-  }
-  
-  @media(max-width: 350px) {
-    font-size: 0.7em;
-    padding: 0 5px;
-  }
-  
+const TextContainer = styled.div`
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const InnerTextContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  align-items: center;
+  
 `;
 
-const DevButton = styled.a`
+const LogoutButton = styled.a`
+  color: white;
   text-decoration: none;
-  color: rgba(255, 255, 255, 1);
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 400;
-  padding-left: 30px;
+  align-items: center;
+  display: flex;
+  transition: opacity 100ms;
+  
   &:hover {
-    text-decoration: underline;
+    opacity: 0.85;
   }
   
-  @media(max-width: 600px) {
-    display: none;
+  &:active {
+    opacity: 0.75;
   }
 `;
 
-
-const CreditLabel = styled.span`
-  text-decoration: none;
-  color: rgba(255, 255, 255, 1);
-  font-size: 1.1rem;
-  font-weight: 400;
-  padding-left: 30px;
-
-  @media(max-width: 600px) {
-    display: none;
-  }
+const LogoutButtonIcon = styled.img`
+  height: 26px;
+  width: 26px;
+  color: white;
+  margin-left: 5px;
 `;
 
 const Header = () => {
 
     return (
         <HeaderContainer>
-            <HeaderSubContainer style={{backgroundColor: "transparent", height: "75px"}}>
-                <Header2XSubContainer>
-                    <FlexCenter><Logo src={`/logo.png?cachebust=429069`}/></FlexCenter>
-                </Header2XSubContainer>
-            </HeaderSubContainer>
-            <HeaderSubContainer style={{backgroundColor: "#e31837"}}>
-                <Header2XSubContainer>
-                    <FlexCenter>
-                        <FirstRedText>Class Find Tool: Student-Made for YorkU</FirstRedText>
-                        <CreditLabel>Isaac Kogan</CreditLabel>
-                    </FlexCenter>
-                </Header2XSubContainer>
-            </HeaderSubContainer>
-            <HeaderSubContainer style={{backgroundColor: "#8C0000", height: "45px"}}>
-                <Header2XSubContainer>
-                    <FlexCenter>
-                        <ButtonContainer>
-                            <Button target="_blank" href="https://github.com/isaackogan/YorkUClassFinder">GitHub Project</Button>
-                            <Button target="_blank" href="https://w2prod.sis.yorku.ca/Apps/WebObjects/cdm.woa/wa/DirectAction/cds">View Timetable</Button>
-                            <Button target="_blank" href="https://www.reddit.com/r/yorku/comments/vcr0q1/yorks_underground_and_groundlevel_pedways_can/">Tunnel Map</Button>
-                        </ButtonContainer>
-                        <ButtonContainer>
-                            <DevButton href="https://github.com/isaackogan/YorkUClassFinder/issues" target="_blank">SUGGEST</DevButton>
-                            <DevButton href="https://isaackogan.com/" target="_blank">CONTACT</DevButton>
-                        </ButtonContainer>
-                    </FlexCenter>
-                </Header2XSubContainer>
-            </HeaderSubContainer>
-
+            <ContentContainer>
+                <TextContainer>
+                    <InnerTextContainer>
+                        <FlexCenter><Logo src={`/yorku_logo.svg?cachebust=429069`}/></FlexCenter>
+                        <Title>Class Find Tool</Title>
+                    </InnerTextContainer>
+                    <ButtonContainer>
+                        <FlexCenter>
+                            <LogoutButton href={"https://passportyork.yorku.ca/ppylogin/ppylogout"}>
+                                Log Out <LogoutButtonIcon src={`/logout.svg?cachebust=429069`}/>
+                            </LogoutButton>
+                        </FlexCenter>
+                    </ButtonContainer>
+                </TextContainer>
+            </ContentContainer>
         </HeaderContainer>
     )
 }
