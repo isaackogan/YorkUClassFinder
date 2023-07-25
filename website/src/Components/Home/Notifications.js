@@ -55,11 +55,11 @@ export function InfoNotification(props) {
     return (
         <Notification style={{borderColor: border, color: color, background: background}}>
             <NotificationContent>
-                <NotificationIcon src={"./info.svg"}/>
+                <NotificationIcon src={"/icons/info.svg"}/>
                 {props.content}
             </NotificationContent>
             <CloseContainer>
-                <XIcon onClick={onClick} color={xBackground} src={'./x.svg'} />
+                <XIcon onClick={onClick} color={xBackground} src={'/icons/x.svg'} />
             </CloseContainer>
         </Notification>
     )

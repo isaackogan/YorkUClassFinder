@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
-import Form from "../../Components/Home/Form";
+import Form from "../Components/Home/Form";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Header from "../../Components/Header";
-import Preview from "../../Components/Home/Preview";
-import ErrorModal from "../../Components/ErrorModal";
-import StartError from "../../Tools/StartError";
-import Hero from "../../Components/Home/Hero";
+import Header from "../Components/Header";
+import Preview from "../Components/Home/Preview";
+import ErrorModal from "../Components/ErrorModal";
+import StartError from "../Tools/StartError";
+import Hero from "../Components/Home/Hero";
 
 const Background = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {"navs": "..."};
+        this.state = {"navs": 0};
     }
 
     async componentDidMount() {
@@ -57,9 +57,9 @@ class Home extends Component {
             return;
         }
 
-        let res = (await fetch("https://yorkapi.isaackogan.com/v1/main/cft/stats")).json();
+        let res = await (await fetch("https://yorkapi.isaackogan.com/v1/main/cft/stats")).json();
         this.setState(
-            {navs: (res.navs || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            {navs: (res?.navs || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         );
 
     }
@@ -69,7 +69,7 @@ class Home extends Component {
         return (
             <ThemeProvider theme={theme}>
                 <Background style={{zIndex: 100}}>
-                    <Header />
+                    <Header navs={this.state.navs}/>
                     <StartError />
                     <HomeContainer>
                         <InnerHomeContainer>

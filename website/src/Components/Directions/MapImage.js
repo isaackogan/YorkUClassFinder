@@ -68,6 +68,7 @@ class MapImage extends Component {
     }
 
     handleCloseButtonClick(event) {
+
         if (event && event.target.id === "buildingPreviewImageModal") {
             this.setState({open: false});
         }
@@ -84,6 +85,7 @@ class MapImage extends Component {
         return (
             <div>
                 <Modal
+                    id={"buildingPreviewImageModal"}
                     open={this.state.open}
                     onClick={(e) => this.handleCloseButtonClick(e)}
                     hideBackdrop={true}

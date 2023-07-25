@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Map from "../../Components/Directions/Map";
+import Map from "../Components/Directions/Map";
 
 
 const Background = styled.div`

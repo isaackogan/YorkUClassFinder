@@ -36,7 +36,7 @@ function getDestinationIcon(text, color, zIndex = "0") {
         <div style="z-index: ${zIndex}">
             <div style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; background-color: rgb(0,0,0); border: 1px solid rgba(83,149,236,0.38)" class="outerIconDiv">
                 <div style="border: 4px solid #ffffff; width: 33%; height: 33%; background-color: rgb(0,0,0);" class="innerIconDiv">
-                    <img alt="" src="/marker.png" style="width: 35px; height: 35px; opacity: 1; z-index: 1000; margin-top: -33px;"/>
+                    <img alt="" src="/icons/marker.png" style="width: 35px; height: 35px; opacity: 1; z-index: 1000; margin-top: -33px;"/>
                 </div>
             </div>
         </div>

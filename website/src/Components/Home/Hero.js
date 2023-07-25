@@ -61,7 +61,7 @@ export default function Hero() {
     return (
         <HeroContainer>
             <Desc>
-                <TitleIcon src={"./map.svg"} />
+                <TitleIcon src={"/icons/map.svg"} />
                 <Title>Class Finder</Title>
             </Desc>
             <div>

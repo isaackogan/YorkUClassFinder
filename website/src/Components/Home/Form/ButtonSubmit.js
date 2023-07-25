@@ -32,25 +32,25 @@ class ButtonSubmit extends DeclaredComponent {
         {
             "label": "Class Find Tool",
             "key": "osm",
-            "image": "/map.svg",
+            "image": "/icons/map.svg",
             "generator": buildOSMQuery
         },
         {
             "label": "Google Maps",
             "key": "gmaps",
-            "image": "/foreign/gmaps.png",
+            "image": "/logos/gmaps.png",
             "generator": buildGoogleMapsQuery
         },
         {
             "label": "Apple Maps",
             "key": "apple",
-            "image": "/foreign/apple.png",
+            "image": "/logos/apple.png",
             "generator": buildAppleMapsQuery
         },
         {
             "label": "Waze",
             "key": "waze",
-            "image": "/foreign/waze.png",
+            "image": "/logos/waze.png",
             "generator": buildWazeQuery
         }
     ]

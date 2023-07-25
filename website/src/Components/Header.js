@@ -2,15 +2,12 @@ import styled from "styled-components";
 
 const Logo = styled.img`
   height: 50px;
-
-  @media(max-width: 300px) {
-    height: 36px;
-  }
-
-  @media(max-width: 300px) {
-    height: 36px;
-  }
+  width: 50px;
   
+  @media(max-width: 300px) {
+    height: 36px;
+    width: 36px;
+  }
   
 `;
 
@@ -23,6 +20,15 @@ const FlexCenter = styled.div`
   @media(max-width: 700px) {
     justify-content: center;
   }
+`;
+
+const FlexCenterColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: initial;
+  margin-left: 15px;
+
 `;
 
 const HeaderContainer = styled.div`
@@ -38,7 +44,6 @@ const HeaderContainer = styled.div`
 const Title = styled.div`
   font-size: 1.3em;
   color: white;
-  margin-left: 20px;
   cursor: default;
   
   @media(max-width: 700px) {
@@ -49,8 +54,17 @@ const Title = styled.div`
     font-size: 0.9em;
   }
   
-  @media(max-width: 350px) {
-    font-size: 0.7em;
+`;
+
+const TitleSub = styled.div`
+  color: white;
+  font-size: 0.8em;
+  margin-top: -3px;
+  transition: opacity 100ms;
+  transition-delay: 50ms;
+  
+  @media(max-width: 500px) {
+    display: none;
   }
 `;
 
@@ -89,6 +103,15 @@ const LogoutButton = styled.a`
   &:active {
     opacity: 0.75;
   }
+
+  @media(max-width: 700px) {
+    font-size: 14px;
+  }
+
+  @media(max-width: 500px) {
+    font-size: 13px;
+  }
+  
 `;
 
 const LogoutButtonIcon = styled.img`
@@ -98,20 +121,36 @@ const LogoutButtonIcon = styled.img`
   margin-left: 5px;
 `;
 
-const Header = () => {
+function getNavText(navs) {
+
+    if (navs === null) {
+        return null;
+    }
+
+    let opacity = Boolean(navs) ? "1" : "0";
+
+    return (
+        <TitleSub style={{opacity: opacity}}>Given {navs.toLocaleString()} total directions</TitleSub>
+    )
+
+}
+const Header = ({navs}) => {
 
     return (
         <HeaderContainer>
             <ContentContainer>
                 <TextContainer>
                     <InnerTextContainer>
-                        <FlexCenter><Logo src={`/yorku_logo.svg?cachebust=429069`}/></FlexCenter>
-                        <Title>Class Find Tool</Title>
+                        <FlexCenter><Logo src={`/icons/yorku_logo.svg?cachebust=429069`}/></FlexCenter>
+                        <FlexCenterColumn>
+                            <Title>Class Find Tool</Title>
+                            {getNavText(navs)}
+                        </FlexCenterColumn>
                     </InnerTextContainer>
                     <ButtonContainer>
                         <FlexCenter>
                             <LogoutButton href={"https://passportyork.yorku.ca/ppylogin/ppylogout"}>
-                                Log Out <LogoutButtonIcon src={`/logout.svg?cachebust=429069`}/>
+                                Log Out <LogoutButtonIcon src={`/icons/logout.svg?cachebust=429069`}/>
                             </LogoutButton>
                         </FlexCenter>
                     </ButtonContainer>

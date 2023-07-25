@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Header from "../../Components/Header";
-import StartError from "../../Tools/StartError";
+import Header from "../Components/Header";
+import StartError from "../Tools/StartError";
 import Button from "@mui/material/Button";
 
 
@@ -19,6 +19,9 @@ const HomeContainer = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
+  margin: 15px;
+  min-width: 40%;
 `;
 
 const theme = createTheme({
@@ -30,15 +33,17 @@ const theme = createTheme({
 });
 
 const Title = styled.h1`
-  margin-top: 33%;
-  font-weight: bold;
-  font-size: 2.4rem;
+  margin-top: 0;
   margin-bottom: 20px;
-
-  @media(max-width: 600px) {
-    font-size: 2.0rem;
-  }
+  font-weight: bold;
+  font-size: 2rem;
   
+`;
+
+const TextContainer = styled.div`
+  padding: 25px;
+  background-color: white;
+  border-radius: 5px;
 `;
 
 
@@ -47,16 +52,18 @@ const NotFound = () => {
     return (
         <ThemeProvider theme={theme}>
             <Background>
-                <Header />
+                <Header navs={null} />
                 <StartError />
                 <HomeContainer>
-                    <Title>Page Not Found</Title>
-                    <Button
-                        style={{maxWidth: "70vw", width: "250px", height: "40px"}} variant="contained"
-                        onClick={() => setTimeout(() => window.location.href = "/", 1000)}
-                    >
-                        Go Home
-                    </Button>
+                    <TextContainer>
+                        <Title>Page Not Found</Title>
+                        <Button
+                            style={{maxWidth: "70vw", width: "250px", height: "40px"}} variant="contained"
+                            onClick={() => setTimeout(() => window.location.href = "/", 1000)}
+                        >
+                            Go Home
+                        </Button>
+                    </TextContainer>
                 </HomeContainer>
             </Background>
         </ThemeProvider>
