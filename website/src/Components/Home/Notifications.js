@@ -20,6 +20,11 @@ const NotificationIcon = styled.img`
   height: 25px;
   margin-right: 10px;
   margin-top: 3px;
+
+  @media(max-width: 400px) {
+    display: none;
+  }
+  
 `;
 
 const XIcon = styled.img`

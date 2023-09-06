@@ -27,7 +27,7 @@ const FlexCenterColumn = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: initial;
-  margin-left: 15px;
+  margin-left: 10px;
 
 `;
 
@@ -53,6 +53,10 @@ const Title = styled.div`
   @media(max-width: 400px) {
     font-size: 0.9em;
   }
+
+  @media(max-width: 350px) {
+    font-size: 1.2em;
+  }
   
 `;
 
@@ -71,6 +75,8 @@ const TitleSub = styled.div`
 const ContentContainer = styled.div`
   max-width: 1600px;
   width: 90%;
+  
+  
 `;
 
 const TextContainer = styled.div`
@@ -78,6 +84,12 @@ const TextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media(max-width: 350px) {
+    justify-content: center;
+    margin-left: -30px;
+  }
+  
 `;
 
 const InnerTextContainer = styled.div`
@@ -86,24 +98,20 @@ const InnerTextContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  
+  @media(max-width: 350px) {
+    display: none;
+  }
 `;
 
-const LogoutButton = styled.a`
+const Text2 = styled.span`
   color: white;
   text-decoration: none;
   align-items: center;
   display: flex;
   transition: opacity 100ms;
+  font-weight: bold;
+  text-align: right;
   
-  &:hover {
-    opacity: 0.85;
-  }
-  
-  &:active {
-    opacity: 0.75;
-  }
-
   @media(max-width: 700px) {
     font-size: 14px;
   }
@@ -111,15 +119,54 @@ const LogoutButton = styled.a`
   @media(max-width: 500px) {
     font-size: 13px;
   }
+
+  @media(max-width: 400px) {
+    font-size: 11px;
+  }
   
 `;
 
-const LogoutButtonIcon = styled.img`
-  height: 26px;
-  width: 26px;
+const LinkURL = styled.a`
+  text-align: right;
   color: white;
-  margin-left: 5px;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  transition: opacity 100ms;
+  font-size: 15px;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+  
+  &:active {
+    opacity: 0.85;
+  }
+
+  @media(max-width: 700px) {
+    font-size: 13px;
+  }
+
+  @media(max-width: 400px) {
+    font-size: 10px;
+  }
+  
 `;
+
+
+const LogoutButtonIcon = styled.img`
+  height: 20px;
+  width: 20px;
+  color: white;
+  margin-left: 2px;
+  margin-top: 2px;
+
+  @media(max-width: 500px) {
+    display: none;
+  }
+  
+`;
+
 
 function getNavText(navs) {
 
@@ -133,6 +180,7 @@ function getNavText(navs) {
         <TitleSub style={{opacity: opacity}}>Given {navs.toLocaleString()} total directions</TitleSub>
     )
 
+
 }
 const Header = ({navs}) => {
 
@@ -141,18 +189,22 @@ const Header = ({navs}) => {
             <ContentContainer>
                 <TextContainer>
                     <InnerTextContainer>
-                        <FlexCenter><Logo src={`/icons/yorku_logo.svg?cachebust=429069`}/></FlexCenter>
+                        <FlexCenter><Logo src={`/icons/map_logo.png`}/></FlexCenter>
                         <FlexCenterColumn>
                             <Title>Class Find Tool</Title>
                             {getNavText(navs)}
                         </FlexCenterColumn>
                     </InnerTextContainer>
                     <ButtonContainer>
-                        <FlexCenter>
-                            <LogoutButton href={"https://passportyork.yorku.ca/ppylogin/ppylogout"}>
-                                Log Out <LogoutButtonIcon src={`/icons/logout.svg?cachebust=429069`}/>
-                            </LogoutButton>
-                        </FlexCenter>
+                        <FlexCenterColumn style={{alignItems: "end"}}>
+                            <Text2>
+                                Student-Made for YorkU
+                            </Text2>
+                            <LinkURL target={"_blank"} href={"https://www.isaackogan.com/linkedin"}>
+                                by Isaac Kogan
+                                <LogoutButtonIcon src={"/icons/link.svg"} />
+                            </LinkURL>
+                        </FlexCenterColumn>
                     </ButtonContainer>
                 </TextContainer>
             </ContentContainer>

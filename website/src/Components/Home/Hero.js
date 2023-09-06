@@ -38,14 +38,27 @@ const Span = styled.div`
   
 `;
 
+const LinkURL = styled.a`
+    font-weight: bold;
+    cursor: pointer;
+    color: inherit !important;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  
+  &:active {
+    opacity: 0.85;
+  }
+`;
+
 function Onboarding() {
     return (
         <OnboardingDiv>
-            <Span>Enter the desired course code in <strong>SC-BIOL-1000-3.0</strong> format to look up its timetable.</Span>
-            <Span>Then, select the course <strong>Section</strong>, <strong>Class</strong>, and <strong>Day</strong> to load directions.</Span>
-            <Span>
-                Click the <Link className={"notifs-link-icon"}/> <strong>Share&nbsp;</strong> button to copy the URL for the current class' directions.
-            </Span>
+            <Span>To see your course list, visit the <Link className={"notifs-link-icon"}/> <LinkURL target={"_blank"} href={"https://w2prod.sis.yorku.ca/Apps/WebObjects/cdm.woa/wa/DirectAction/cds"}>Course Website</LinkURL> and log in with <strong>Passport York</strong>.</Span>
+            <Span>Enter a course code below in <strong>SC-BIOL-1000-3.0</strong> format to look up its schedule.</Span>
+            <Span>Select the course <strong>Section</strong>, <strong>Class</strong>, and <strong>Day</strong> to load directions, and <Link className={"notifs-link-icon"}/> to export.</Span>
         </OnboardingDiv>
     )
 }

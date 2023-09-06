@@ -12,7 +12,7 @@ const PreviewContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 50vh;
+  height: ${props => props.height};
 `;
 
 const Text = styled.span`
@@ -137,7 +137,7 @@ class Preview extends DeclaredComponent {
         });
 
         return (
-            <PreviewContainer>
+            <PreviewContainer height={this.props.height || "50vh"}>
                 <MapContainer center={this.state.coordinates} zoom={this.state.zoom} scrollWheelZoom={false} style={{borderRadius: "3px"}}>
                     <MapController coordinates={this.state.coordinates} zoom={this.state.zoom} />
                     <TileLayer

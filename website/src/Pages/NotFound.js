@@ -56,7 +56,6 @@ const NotFound = () => {
                 <StartError />
                 <HomeContainer>
                     <TextContainer>
-                        <Title>Page Not Found</Title>
                         <Button
                             style={{maxWidth: "70vw", width: "250px", height: "40px"}} variant="contained"
                             onClick={() => setTimeout(() => window.location.href = "/", 1000)}
