@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.1",
+    "js-cookie": "^3.0.5",
     "leaflet": "^1.8.0",
     "leaflet-routing-machine": "^3.2.12",
     "react": "^18.2.0",

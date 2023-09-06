@@ -7,6 +7,7 @@ import Preview from "../Components/Home/Preview";
 import ErrorModal from "../Components/ErrorModal";
 import StartError from "../Tools/StartError";
 import Hero from "../Components/Home/Hero";
+import FirstDayModal from "../Components/Home/Advert/FirstDayModal";
 
 const Background = styled.div`
   display: flex;
@@ -76,6 +77,7 @@ class Home extends Component {
                             <Hero />
                             <Form />
                             <Preview />
+                            <FirstDayModal />
                         </InnerHomeContainer>
                     </HomeContainer>
                     <ErrorModal />
