@@ -62,10 +62,8 @@ class FirstDayModal extends Component {
     constructor(props) {
         super(props);
         this.personal = "https://isaackogan.com/"
-        this.instagram = "https://isaackogan.com/instagram";
-        this.linkedin = "https://isaackogan.com/linkedin";
 
-        this.disableAfter = 1694652351;
+        this.disableAfter = 1725508800;
         this.currentTime = Math.floor(Date.now() / 1000);
 
         this.state = {
@@ -88,15 +86,12 @@ class FirstDayModal extends Component {
             <div>
                 <BootstrapDialog  onClose={() => this.onClose()} aria-labelledby="customized-dialog-title" open={this.state.enabled}>
                     <BootstrapDialogTitle id="customized-dialog-title" onClose={() => this.onClose()}>
-                        Welcome, First-Years (et. al)!
+                        Welcome, Freshmen (et. al)!
                     </BootstrapDialogTitle>
                     <DialogContent dividers>
-                        Welcome, everyone! I'm <Link href={this.personal}>Isaac Kogan</Link>, this is my 2nd year at YorkU, and you're on
-                        my app, <strong>Class Find Tool for YorkU</strong>.
+                        I'm <Link href={this.personal}>Isaac Kogan</Link>, this is my 3rd year at YorkU, and you're on <strong>Class Find Tool for YorkU</strong>.
                         <br/><br/>
-                        Feel free to reach out on <Link target="_blank" href={this.linkedin}>LinkedIn</Link>.
-                        <br/><br/>
-                        Good luck this semester, and enjoy my app! It was a pleasure to make.
+                        Congratulations on your acceptance to YorkU, good luck this semester, and enjoy my app! It was a pleasure to make.
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => this.onClose()}>

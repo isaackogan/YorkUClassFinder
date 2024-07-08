@@ -200,7 +200,7 @@ const Header = ({navs}) => {
                             <Text2>
                                 Student-Made for YorkU
                             </Text2>
-                            <LinkURL target={"_blank"} href={"https://www.isaackogan.com/linkedin"}>
+                            <LinkURL target={"_blank"} href={"https://www.linkedin.com/in/isaackogan/"}>
                                 by Isaac Kogan
                                 <LogoutButtonIcon src={"/icons/link.svg"} />
                             </LinkURL>
